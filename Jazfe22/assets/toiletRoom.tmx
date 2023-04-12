@@ -27,6 +27,9 @@
  <tileset firstgid="5133" name="toilets" tilewidth="32" tileheight="32" tilecount="99" columns="9">
   <image source="toilets.png" width="288" height="352"/>
  </tileset>
+ <tileset firstgid="5232" name="collectibles_32x32" tilewidth="32" tileheight="32" tilecount="16" columns="4">
+  <image source="collectibles_32x32.png" width="128" height="128"/>
+ </tileset>
  <layer id="1" name="wallLayer" width="13" height="13">
   <data encoding="csv">
 5169,5169,5169,5169,5169,5169,5169,5169,5169,5169,5169,5169,5169,

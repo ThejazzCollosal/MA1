@@ -348,6 +348,9 @@
  <tileset firstgid="2657" name="doors" tilewidth="32" tileheight="32" tilecount="204" columns="12">
   <image source="doors.png" width="384" height="544"/>
  </tileset>
+ <tileset firstgid="2861" name="collectibles_32x32" tilewidth="32" tileheight="32" tilecount="16" columns="4">
+  <image source="collectibles_32x32.png" width="128" height="128"/>
+ </tileset>
  <layer id="1" name="groundLayer" width="20" height="13">
   <data encoding="csv">
 0,0,2466,2466,0,863,863,863,863,863,863,863,863,863,863,863,863,863,863,863,

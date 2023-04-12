@@ -13,16 +13,6 @@ class level4 extends Phaser.Scene {
         //Step1
         this.load.tilemapTiledJSON("map4", "assets/bossOffice.tmj");
 
-        //Step2
-        this.load.image("castle", "assets/Castle2.png")
-        this.load.image("defi", "assets/defimon3.png")
-        this.load.image("kitchen", "assets/Kitchen_32x32.png")
-        this.load.image("music", "assets/Music_and_sport_32x32.png")
-        this.load.image("door", "assets/doors.png")
-        this.load.image("extra", "assets/misc_atlas.png")
-        this.load.image("atlas", "assets/atlas_32x.png")
-        this.load.image("basement", "assets/Basement_32x32.png")
-        this.load.image("livingroom", "assets/LivingRoom_32x32.png")
     }
 
     create() {
@@ -44,7 +34,8 @@ class level4 extends Phaser.Scene {
         let atlasTiles = map.addTilesetImage("atlas_32x", "atlas");
         let basementTiles = map.addTilesetImage("Basement_32x32", "basement");
         let livingroomTiles = map.addTilesetImage("LivingRoom_32x32", "livingroom");
-       
+        let collectTiles = map.addTilesetImage("collectibles_32x32", "collect");
+
         //Step 5  create an array of tiles
         let tilesArray = [
             kitchenTiles,
@@ -55,7 +46,8 @@ class level4 extends Phaser.Scene {
             extraTiles,
             atlasTiles,
             basementTiles,
-            livingroomTiles
+            livingroomTiles,
+            collectTiles
 
         ];
 
@@ -68,16 +60,64 @@ class level4 extends Phaser.Scene {
         this.freeLayer2 = map.createLayer("freeLayer2", tilesArray, 0, 0);
 
 
-        var startPoint = map.findObject("summonLayer", (obj) => obj.name === "start")
+
+        // var startPoint = map.findObject("summonLayer", (obj) => obj.name === "start")
 
 
 
+        // this.page= this.physics.add.sprite(217,390,'page')
 
-        this.player = this.physics.add.sprite(startPoint.x, startPoint.y, 'MC').setScale(0.8).play('MC-left')
+
+        if (window.readnote2 == 0) {
+            this.page = this.physics.add.sprite(217, 390, 'page')
+        }
+
+        if (window.readnote3 == 0) {
+            this.page2 = this.physics.add.sprite(366, 185, 'page')
+        }
+
+        this.player = this.physics.add.sprite(this.player.x, this.player.y, 'MC').setScale(0.8).play('MC-up')
         this.cameras.main.startFollow(this.player);
         this.cursors = this.input.keyboard.createCursorKeys();
 
         window.player = this.player
+
+        
+        // this.time.addEvent({
+        //     delay: 1000,
+        //     callback: this.moveLadder,
+        //     callbackScope: this,
+        //     loop: false,
+        // });
+
+        // this.time.addEvent({
+        //     delay: 1000,
+        //     callback: this.moveCircle,
+        //     callbackScope: this,
+        //     loop: false,
+        // });
+
+
+        // this.time.addEvent({
+        //     delay: 0,
+        //     callback: this.moveSquare,
+        //     callbackScope: this,
+        //     loop: false,
+        // });
+
+        // this.time.addEvent({
+        //     delay: 0,
+        //     callback: this.moveDownUp,
+        //     callbackScope: this,
+        //     loop: false,
+        // });
+
+        this.time.addEvent({
+            delay: 0,
+            callback: this.moveRightLeft,
+            callbackScope: this,
+            loop: false,
+        }); 
 
         //////////////////////////////////////Collisions////////////////////////////////////////
         this.objLayer.setCollisionByExclusion(-1, true)
@@ -86,7 +126,42 @@ class level4 extends Phaser.Scene {
         this.physics.add.collider(this.objLayer, this.player)
         this.physics.add.collider(this.objLayer2, this.player)
 
-        // this.player.setCollideWorldBounds(true);
+        if (window.readnote2 == 0) {
+            this.physics.add.overlap(
+                this.player, // player
+                this.page,  // enemy
+                this.collectPage,    // function to call 
+                null,
+                this
+            );
+        }
+        //this.hit = this.sound.add("hit")
+
+        this.physics.add.overlap(this.page, this.player, this.collectPage, null, this);
+
+        if (window.readnote3 == 0) {
+            this.physics.add.overlap(
+                this.player, // player
+                this.page2,  // enemy
+                this.collectPage2,    // function to call 
+                null,
+                this
+            );
+        }
+        //this.hit = this.sound.add("hit")
+
+        this.physics.add.overlap(this.page2, this.player, this.collectPage2, null, this);
+
+
+        
+
+    
+
+        this.player.setCollideWorldBounds(true);
+
+        this.physics.world.bounds.width = this.baseLayer.width
+        this.physics.world.bounds.height = this.baseLayer.height
+
 
     }
     update() {
@@ -95,9 +170,13 @@ class level4 extends Phaser.Scene {
             this.level5()
         }
 
-        if (this.player.x > 486 && this.player.x < 538  && this.player.y < 394 && this.player.y > 389) {
-            this.level3()
+        if (this.player.x > 486 && this.player.x < 538 && this.player.y < 394 && this.player.y > 389) {
+            if (window.note >= 2) {
+                this.level3()
+            }
+
         }
+
 
         if (this.cursors.left.isDown) {
             this.player.setVelocityX(-100);
@@ -125,20 +204,21 @@ class level4 extends Phaser.Scene {
     }
 
     level5() {
-        // player.x = 605;
-        // player.y = 364;
+        let playerpos = {}
+        playerpos.x = 378;
+        playerpos.y = 360;
         this.scene.start('level5', {
-            player: player,
+            player: playerpos,
             inventory: this.inventory
         });
     }
 
     level3() {
-        player={}
-        player.x = 593;
-        player.y = 194;
+        let playerpos = {}
+        playerpos.x = 593;
+        playerpos.y = 194;
         this.scene.start('level3', {
-            player: player,
+            player: playerpos,
             inventory: this.inventory
         });
     }
@@ -148,4 +228,20 @@ class level4 extends Phaser.Scene {
         this.scene.start("death");
         window.key = 0
     }
+
+    collectPage(player, page) {
+        page.disableBody(true, true);
+        this.scene.start("msg2")
+        window.note++
+
+
+    }
+
+    collectPage2(player, page2) {
+        page2.disableBody(true, true);
+        this.scene.start("msg3")
+        window.note++
+
+    }
+
 }

@@ -112,8 +112,8 @@
                  "rotation":0,
                  "visible":true,
                  "width":0,
-                 "x":109.348,
-                 "y":321.072
+                 "x":48.348,
+                 "y":367.072
                 }, 
                 {
                  "class":"",
@@ -945,6 +945,19 @@
          "name":"doors",
          "spacing":0,
          "tilecount":204,
+         "tileheight":32,
+         "tilewidth":32
+        }, 
+        {
+         "columns":4,
+         "firstgid":2861,
+         "image":"collectibles_32x32.png",
+         "imageheight":128,
+         "imagewidth":128,
+         "margin":0,
+         "name":"collectibles_32x32",
+         "spacing":0,
+         "tilecount":16,
          "tileheight":32,
          "tilewidth":32
         }],

@@ -267,6 +267,19 @@
          "tilecount":99,
          "tileheight":32,
          "tilewidth":32
+        }, 
+        {
+         "columns":4,
+         "firstgid":5232,
+         "image":"collectibles_32x32.png",
+         "imageheight":128,
+         "imagewidth":128,
+         "margin":0,
+         "name":"collectibles_32x32",
+         "spacing":0,
+         "tilecount":16,
+         "tileheight":32,
+         "tilewidth":32
         }],
  "tilewidth":32,
  "type":"map",

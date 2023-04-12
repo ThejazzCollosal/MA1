@@ -41,7 +41,7 @@
          "y":0
         }, 
         {
-         "data":[0, 0, 1073743696, 0, 0, 0, 0, 0, 1073743696, 0, 0, 0, 0, 0, 1073743696, 0, 0, 0, 0, 0, 1073743696, 0, 0, 0, 0,
+         "data":[0, 0, 1073743696, 0, 0, 0, 0, 0, 0, 0, 1073743696, 0, 0, 0, 0, 0, 0, 0, 1073743696, 0, 0, 0, 0, 0, 1073743696,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -82,7 +82,7 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":5,
+ "nextlayerid":6,
  "nextobjectid":2,
  "orientation":"orthogonal",
  "renderorder":"right-down",
@@ -152,6 +152,74 @@
          "spacing":0,
          "tilecount":768,
          "tileheight":32,
+         "tilewidth":32
+        }, 
+        {
+         "columns":4,
+         "firstgid":4161,
+         "image":"collectibles_32x32.png",
+         "imageheight":128,
+         "imagewidth":128,
+         "margin":0,
+         "name":"collectibles_32x32",
+         "spacing":0,
+         "tilecount":16,
+         "tileheight":32,
+         "tiles":[
+                {
+                 "id":6,
+                 "properties":[
+                        {
+                         "name":"light",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":7,
+                 "properties":[
+                        {
+                         "name":"light",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":10,
+                 "properties":[
+                        {
+                         "name":"light",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":11,
+                 "properties":[
+                        {
+                         "name":"light",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":14,
+                 "properties":[
+                        {
+                         "name":"light",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":15,
+                 "properties":[
+                        {
+                         "name":"light",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }],
          "tilewidth":32
         }],
  "tilewidth":32,

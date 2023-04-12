@@ -13,12 +13,6 @@ class level1 extends Phaser.Scene {
         //Step1
         this.load.tilemapTiledJSON("world", "assets/groundFloor.tmj");
 
-        //Step2
-        this.load.image("castle", "assets/Castle2.png")
-        this.load.image("defi", "assets/defimon3.png")
-        this.load.image("kitchen", "assets/Kitchen_32x32.png")
-        this.load.image("music", "assets/Music_and_sport_32x32.png")
-        this.load.image("door", "assets/doors.png")
     }
 
     create() {
@@ -36,6 +30,8 @@ class level1 extends Phaser.Scene {
         let defimonTiles = map.addTilesetImage("defimon3", "defi");
         let castleTiles = map.addTilesetImage("Castle2", "castle");
         let doorTiles = map.addTilesetImage("doors", "door");
+        
+        
 
         //Step 5  create an array of tiles
         let tilesArray = [
@@ -45,6 +41,7 @@ class level1 extends Phaser.Scene {
             castleTiles,
             doorTiles
         ];
+
 
         // Step 6  Load in layers by layers
         this.groundLayer = map.createLayer("groundLayer", tilesArray, 0, 0);
@@ -56,15 +53,21 @@ class level1 extends Phaser.Scene {
         this.freeLayer2 = map.createLayer("freeLayer2", tilesArray, 0, 0);
         this.freeLayer3 = map.createLayer("freeLayer3", tilesArray, 0, 0);
 
-        var startPoint = map.findObject("objectLayer", (obj) => obj.name === "start")
+        // this.physics.world.bounds.width = this.groundLayer.width
+        // this.physics.world.bounds.height = this.groundLayer.height
+        
+
+        //var startPoint = map.findObject("objectLayer", (obj) => obj.name === "start")
         // var endPoint = map.findObject("objectLayer", (obj) => obj.name === "end")
 
-
+        this.half= this.physics.add.sprite(340,366,'half').setOffset(-10,0)
 
 
         this.player = this.physics.add.sprite(this.playerpos.x, this.playerpos.y, 'MC').setScale(0.8).play('MC-down')
         this.cameras.main.startFollow(this.player);
         this.cursors = this.input.keyboard.createCursorKeys();
+
+        this.player.setCollideWorldBounds(true);
 
         window.player = this.player
 
@@ -75,13 +78,23 @@ class level1 extends Phaser.Scene {
         this.itemLayer2.setCollisionByExclusion(-1, true)
         this.wallLayer.setCollisionByExclusion(-1, true)
 
+        this.physics.add.overlap(
+            this.player, // player
+            this.half,  // enemy
+            this.collectHalf,    // function to call 
+            null,
+            this
+        );
+       // this.hit = this.sound.add("hit")
+
+        this.physics.add.overlap(this.half, this.player,this.collectHalf, null, this);
+
         this.physics.add.collider(this.itemLayer1, this.player)
         this.physics.add.collider(this.itemLayer2, this.player)
         this.physics.add.collider(this.overlaylayer, this.player)
         this.physics.add.collider(this.wallLayer, this.player)
 
-        //this.player.setCollideWorldBounds(true);
-
+       
     }
     update() {
 
@@ -115,12 +128,19 @@ class level1 extends Phaser.Scene {
     }
 
     level2() {
-        player.x = 50;
-        player.y = 183;
+        let playerpos = {}
+        playerpos.x = 66;
+        playerpos.y = 183;
         this.scene.start('level2', {
-            player: player,
+            player: playerpos,
             inventory: this.inventory
         });
+    }
+
+    collectHalf(player, half) {
+        half.disableBody(true, true);
+        window.glass++
+    
     }
 
     death(player, tile) {

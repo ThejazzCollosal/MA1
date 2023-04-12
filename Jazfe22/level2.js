@@ -12,18 +12,14 @@ class level2 extends Phaser.Scene {
 
         //Step1
         this.load.tilemapTiledJSON("map2", "assets/firstFloorLeft.tmj");
-
-        //Step2
-        this.load.image("castle", "assets/Castle2.png")
-        this.load.image("defi", "assets/defimon3.png")
-        this.load.image("kitchen", "assets/Kitchen_32x32.png")
-        this.load.image("music", "assets/Music_and_sport_32x32.png")
-        this.load.image("door", "assets/doors.png")
+        
     }
 
     create() {
 
         console.log("level2")
+
+        
 
         //Step3
         let map = this.make.tilemap({ key: "map2" });
@@ -44,7 +40,6 @@ class level2 extends Phaser.Scene {
             defimonTiles,
             castleTiles,
             doorTiles
-
         ];
 
         // Step 6  Load in layers by layers
@@ -61,26 +56,58 @@ class level2 extends Phaser.Scene {
         //var endPoint = map.findObject("summonLayer", (obj) => obj.name === "end")
 
 
-        this.player = this.physics.add.sprite(startPoint.x, startPoint.y, 'MC').setScale(0.8).play('MC-down')
-        // this.player = this.physics.add.sprite(endPoint.x, endPoint.y, 'MC').setScale(0.8).play('MC-right')
+        this.player = this.physics.add.sprite(this.player.x, this.player.y, 'MC').setScale(0.8).play('MC-down')
+        this.empty= this.physics.add.sprite(304,300,'empty')
+        this.empty2= this.physics.add.sprite(565,180,'empty')
+        this.half= this.physics.add.sprite(470,315,'half')
         this.cameras.main.startFollow(this.player);
         this.cursors = this.input.keyboard.createCursorKeys();
 
         window.player = this.player
 
-        // this.player.setCollideWorldBounds(true);
+         this.player.setCollideWorldBounds(true);
 
         //////////////////////////////////////Collisions////////////////////////////////////////
         this.wallLayer.setCollisionByProperty({ wall: true })
         this.obstuctionLayer.setCollisionByExclusion(-1, true)
         this.obstructionLayer2.setCollisionByExclusion(-1, true)
 
-
         this.physics.add.collider(this.wallLayer, this.player)
         this.physics.add.collider(this.obstuctionLayer, this.player)
         this.physics.add.collider(this.obstructionLayer2, this.player)
 
+        this.physics.add.overlap(
+            this.player, // player
+            this.empty,  // enemy
+            this.collectEmpty,    // function to call 
+            null,
+            this
+        );
+       // this.hit = this.sound.add("hit")
 
+        this.physics.add.overlap(this.empty, this.player,this.collectEmpty, null, this);
+
+        this.physics.add.overlap(
+            this.player, // player
+            this.empty2,  // enemy
+            this.collectEmpty2,    // function to call 
+            null,
+            this
+        );
+       // this.hit = this.sound.add("hit")
+
+       this.physics.add.overlap(this.empty2, this.player,this.collectEmpty2, null, this);
+
+        this.physics.add.overlap(
+            this.player, // player
+            this.half,  // enemy
+            this.collectHalf,    // function to call 
+            null,
+            this
+        );
+       // this.hit = this.sound.add("hit")
+
+        this.physics.add.overlap(this.half, this.player,this.collectHalf, null, this);
 
     }
     update() {
@@ -89,8 +116,10 @@ class level2 extends Phaser.Scene {
             this.level1()
         }
 
-        if (this.player.x > 630 && this.player.x < 640 && this.player.y < 383 && this.player.y > 343) {
-            this.level3()
+        if (this.player.x > 613 && this.player.x < 640 && this.player.y < 383 && this.player.y > 343) {
+            if(window.glass>=4){
+                this.level3() 
+            }
         }
 
         if (this.cursors.left.isDown) {
@@ -134,26 +163,45 @@ class level2 extends Phaser.Scene {
     // }
 
     level1() {
-        player.x = 38;
-        player.y = 200;
+        let playerpos = {}
+        playerpos.x = 38;
+        playerpos.y = 200;
         this.scene.start('level1', {
-            player: player,
+            player: playerpos,
             inventory: this.inventory
         });
     }
 
     level3() {
-        player.x = 50;
-        player.y = 200;
+        let playerpos = {}
+        playerpos.x = 50;
+        playerpos.y = 370;
         this.scene.start('level3', {
-            player: player,
+            player: playerpos,
             inventory: this.inventory
         });
     }
 
-    death(player, tile) {
-        console.log("You died");
-        this.scene.start("death");
+    collectEmpty(player, empty) {
+        empty.disableBody(true, true);
+        window.glass++
+    
+    }
+
+    collectEmpty2(player, empty2) {
+        empty2.disableBody(true, true);
+        window.glass++
+    
+    }
+
+    collectHalf(player, half) {
+        half.disableBody(true, true);
+        window.glass++
+    
+    }
+
+    night() {
+        this.scene.start("night");
         window.key = 0
     }
 

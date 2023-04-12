@@ -13,14 +13,6 @@ class level3 extends Phaser.Scene {
         //Step1
         this.load.tilemapTiledJSON("map3", "assets/firstFloorRight.tmj");
 
-        //Step2
-        this.load.image("castle", "assets/Castle2.png")
-        this.load.image("defi", "assets/defimon3.png")
-        this.load.image("kitchen", "assets/Kitchen_32x32.png")
-        this.load.image("music", "assets/Music_and_sport_32x32.png")
-        this.load.image("door", "assets/doors.png")
-        this.load.image("extra", "assets/misc_atlas.png")
-        this.load.audio("hit", "assets/ghost.mp3")
     }
 
     create() {
@@ -29,6 +21,10 @@ class level3 extends Phaser.Scene {
 
         //Step3
         let map = this.make.tilemap({ key: "map3" });
+
+       this.game.sound.stopAll()
+       
+       window.ghostmusic - this.sound.add("ghost").setVolume(0.1).setLoop(true).play()
 
         // Step 4 Load the game tilest
         // 1st parameter is name in Tiled,
@@ -39,6 +35,7 @@ class level3 extends Phaser.Scene {
         let castleTiles = map.addTilesetImage("Castle2", "castle");
         let doorTiles = map.addTilesetImage("doors", "door");
         let extraTiles = map.addTilesetImage("misc_atlas", "extra");
+        let collectTiles = map.addTilesetImage("collectibles_32x32", "collect");
 
         //Step 5  create an array of tiles
         let tilesArray = [
@@ -47,7 +44,8 @@ class level3 extends Phaser.Scene {
             defimonTiles,
             castleTiles,
             doorTiles,
-            extraTiles
+            extraTiles,
+            collectTiles
 
         ];
 
@@ -58,6 +56,7 @@ class level3 extends Phaser.Scene {
         this.objectLayer2 = map.createLayer("objectLayer2", tilesArray, 0, 0);
         this.doorLayer = map.createLayer("doorLayer", tilesArray, 0, 0);
         this.freeLayer = map.createLayer("freeLayer", tilesArray, 0, 0);
+
 
         ////////tween movements///////////////
 
@@ -77,7 +76,7 @@ class level3 extends Phaser.Scene {
 
 
         this.time.addEvent({
-            delay: 1500,
+            delay: 0,
             callback: this.moveSquare,
             callbackScope: this,
             loop: false,
@@ -91,7 +90,7 @@ class level3 extends Phaser.Scene {
         });
 
         this.time.addEvent({
-            delay: 2000,
+            delay: 0,
             callback: this.moveRightLeft,
             callbackScope: this,
             loop: false,
@@ -99,19 +98,23 @@ class level3 extends Phaser.Scene {
 
         ///////////////////Tweens///////////////
 
-        this.ghost = this.physics.add.sprite(400, 200, "NPC").play('NPC-left').setScale(0.8);
-        this.ghost2 = this.physics.add.sprite(600, 200, "NPC").play('NPC-down').setScale(0.8);
-
         var startPoint = map.findObject("summonLayer", (obj) => obj.name === "start")
-    
 
 
-        this.player = this.physics.add.sprite(startPoint.x, startPoint.y, 'MC').setScale(0.8).play('MC-right')
+        this.ghost = this.physics.add.sprite(400, 200, "NPC").play('NPC-down').setScale(0.8);
+        this.ghost2 = this.physics.add.sprite(600, 200, "NPC").play('NPC-left').setScale(0.8);
+        this.ghost3 = this.physics.add.sprite(200, 400, "NPC").play('NPC-up').setScale(0.8);
+        
+        if(window.readnote ==0){
+            this.page= this.physics.add.sprite(50,300,'page')
+        }
+        
+
+        this.player = this.physics.add.sprite(this.player.x, this.player.y, 'MC').setScale(0.8).play('MC-right')
         this.cameras.main.startFollow(this.player);
         this.cursors = this.input.keyboard.createCursorKeys();
 
         window.player = this.player
-
 
 
         //////////////////////////////////////Collisions////////////////////////////////////////
@@ -123,6 +126,18 @@ class level3 extends Phaser.Scene {
         this.physics.add.collider(this.objectLayer, this.player)
         this.physics.add.collider(this.objectLayer2, this.player)
         this.physics.add.collider(this.wallLayer, this.player)
+
+        this.physics.add.overlap(
+            this.player, // player
+            this.page,  // enemy
+            this.collectPage,    // function to call 
+            null,
+            this
+        );
+        //this.hit = this.sound.add("hit")
+
+        this.physics.add.overlap(this.page, this.player,this.collectPage, null, this);
+
 
         this.physics.add.overlap(
             this.player, // player
@@ -143,11 +158,21 @@ class level3 extends Phaser.Scene {
         );
         this.hit = this.sound.add("hit")
 
+        this.physics.add.overlap(
+            this.player, // player
+            this.ghost3,  // enemy
+            this.overlapGhost3,    // function to call 
+            null,
+            this
+        );
+        this.hit = this.sound.add("hit")
+
         this.physics.add.overlap(this.ghost, this.player, this.death, null, this);
         this.physics.add.overlap(this.ghost2, this.player, this.death, null, this);
+        this.physics.add.overlap(this.ghost3, this.player, this.death, null, this);
 
 
-        // this.player.setCollideWorldBounds(true);
+        this.player.setCollideWorldBounds(true);
 
     }
     update() {
@@ -185,6 +210,7 @@ class level3 extends Phaser.Scene {
 
     }
 
+
     moveSquare() {
         console.log("moveSquare");
         this.tweens.timeline({
@@ -195,6 +221,7 @@ class level3 extends Phaser.Scene {
             tweens: [
                 {
                     y: 390,
+
                 },
                 {
                     x: 200,
@@ -227,11 +254,29 @@ class level3 extends Phaser.Scene {
         });
     }
 
+    moveDownUp() {
+        console.log("moveDownUp");
+        this.tweens.timeline({
+            targets: this.ghost3,
+            ease: "Linear",
+            loop: -1, // loop forever
+            duration: 2000,
+            tweens: [
+                {
+                    y: 200,
+                },
+                {
+                    y: 400,
+                },
+            ],
+        });
+    }
+
     overlapGhost(player, enemy) {
 
         // disable enemy after overlap
         enemy.disableBody(true, true);
-
+        this.scene.start("death");
         // Play a sound
         this.hit.play();
 
@@ -244,37 +289,58 @@ class level3 extends Phaser.Scene {
 
         // disable enemy after overlap
         enemy.disableBody(true, true);
-
+        this.scene.start('death');
         // Play a sound
         this.hit.play();
 
         // shake the screen 
         this.cameras.main.shake(300);
-
     }
 
+    overlapGhost3(player, enemy) {
+
+        // disable enemy after overlap
+        enemy.disableBody(true, true);
+        this.scene.start('death');
+        // Play a sound
+        this.hit.play();
+
+        // shake the screen 
+        this.cameras.main.shake(300);
+    }
+
+    collectPage(player, page) {
+        page.disableBody(true, true);
+        this.scene.start("msg1")
+        window.note++
+    }
+
+
     level4() {
-        player.x = 605;
-        player.y = 364;
+        let playerpos = {}
+        playerpos.x = 512;
+        playerpos.y = 364;
         this.scene.start('level4', {
-            player: player,
+            player: playerpos,
             inventory: this.inventory
         });
     }
 
 
-        level2() {
-            player.x = 611;
-            player.y = 362;
-            this.scene.start('level2', {
-                player: player,
-                inventory: this.inventory
-            });
-        }
-
-        death() {
-            this.scene.start("death");
-            window.key = 0
-        }
+    level2() {
+        let playerpos = {}
+        playerpos.x = 611;
+        playerpos.y = 362;
+        this.scene.start('level2', {
+            player: playerpos,
+            inventory: this.inventory
+        });
     }
+
+
+    death() {
+        this.scene.start("death");
+        window.key = 0
+    }
+}
 
