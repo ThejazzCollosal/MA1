@@ -38,79 +38,79 @@ class preloadScene extends Phaser.Scene {
 
         
 
-        var spaceDown = this.input.keyboard.addKey('SPACE');
-        var key1 = this.input.keyboard.addKey(49)
-        var key2 = this.input.keyboard.addKey(50)
-        var key3 = this.input.keyboard.addKey(51)
-        var key4 = this.input.keyboard.addKey(52)
-        var key5 = this.input.keyboard.addKey(53)
-        var key6 = this.input.keyboard.addKey(54)
-        var key7 = this.input.keyboard.addKey(55)
+        // var spaceDown = this.input.keyboard.addKey('SPACE');
+        // var key1 = this.input.keyboard.addKey(49)
+        // var key2 = this.input.keyboard.addKey(50)
+        // var key3 = this.input.keyboard.addKey(51)
+        // var key4 = this.input.keyboard.addKey(52)
+        // var key5 = this.input.keyboard.addKey(53)
+        // var key6 = this.input.keyboard.addKey(54)
+        // var key7 = this.input.keyboard.addKey(55)
 
 
-        spaceDown.on('down', function () {
-            this.scene.start("opening");
-        }, this);
+        // spaceDown.on('down', function () {
+        //     this.scene.start("opening");
+        // }, this);
 
-        key2.on('down', function () {
-            let playerpos = {}
-            playerpos.x = 35;
-            playerpos.y = 330;
-            this.scene.start("level1",{
-                player: playerpos,
-                inventory: this.inventory
-            });
-        }, this);
+        // key2.on('down', function () {
+        //     let playerpos = {}
+        //     playerpos.x = 35;
+        //     playerpos.y = 330;
+        //     this.scene.start("level1",{
+        //         player: playerpos,
+        //         inventory: this.inventory
+        //     });
+        // }, this);
 
-        key3.on('down', function () {
-            let playerpos = {}
-            playerpos.x = 66;
-            playerpos.y = 183;
-            this.scene.start("level2",{
-                player: playerpos,
-                inventory: this.inventory
-            });
-        }, this);
+        // key3.on('down', function () {
+        //     let playerpos = {}
+        //     playerpos.x = 66;
+        //     playerpos.y = 183;
+        //     this.scene.start("level2",{
+        //         player: playerpos,
+        //         inventory: this.inventory
+        //     });
+        // }, this);
 
-        key4.on('down', function () {
-            let playerpos = {}
-            playerpos.x = 50;
-            playerpos.y = 370;
-            this.scene.start("level3",{
-                player: playerpos,
-                inventory: this.inventory   
-            });
-        }, this);
+        // key4.on('down', function () {
+        //     let playerpos = {}
+        //     playerpos.x = 50;
+        //     playerpos.y = 370;
+        //     this.scene.start("level3",{
+        //         player: playerpos,
+        //         inventory: this.inventory   
+        //     });
+        // }, this);
 
-        key5.on('down', function () {
-            let playerpos = {}
-            playerpos.x = 512;
-            playerpos.y = 364;
-            this.scene.start("level4",{
-                player: playerpos,
-                inventory: this.inventory
-            });
-        }, this);
+        // key5.on('down', function () {
+        //     let playerpos = {}
+        //     playerpos.x = 512;
+        //     playerpos.y = 364;
+        //     this.scene.start("level4",{
+        //         player: playerpos,
+        //         inventory: this.inventory
+        //     });
+        // }, this);
 
-        key6.on('down', function () {
-            let playerpos = {}
-            playerpos.x = 378;
-            playerpos.y = 360;
-            this.scene.start('level5', {
-                player: playerpos,
-                inventory: this.inventory
-            });
-        }, this);
+        // key6.on('down', function () {
+        //     let playerpos = {}
+        //     playerpos.x = 378;
+        //     playerpos.y = 360;
+        //     this.scene.start('level5', {
+        //         player: playerpos,
+        //         inventory: this.inventory
+        //     });
+        // }, this);
 
-        key7.on('down', function () {
-            let playerpos = {}
-            playerpos.x = 11;
-            playerpos.y = 193;
-            this.scene.start('level6', {
-                player: playerpos,
-                inventory: this.inventory
-            });
-        }, this);
+        // key7.on('down', function () {
+        //     let playerpos = {}
+        //     playerpos.x = 11;
+        //     playerpos.y = 193;
+        //     this.scene.start('level6', {
+        //         player: playerpos,
+        //         inventory: this.inventory
+        //     });
+        // }, this);
         
 
 
@@ -190,7 +190,7 @@ class preloadScene extends Phaser.Scene {
         //     });
         //     }, this );
 
-
+this.scene.start("opening")
 
 
     }

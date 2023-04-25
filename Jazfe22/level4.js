@@ -120,12 +120,15 @@ class level4 extends Phaser.Scene {
         }); 
 
         //////////////////////////////////////Collisions////////////////////////////////////////
+        this.baseLayer.setCollisionByExclusion(-1, true)
         this.objLayer.setCollisionByExclusion(-1, true)
         this.objLayer2.setCollisionByExclusion(-1, true)
-
+       
+        
+        this.physics.add.collider(this.baseLayer, this.player)
         this.physics.add.collider(this.objLayer, this.player)
         this.physics.add.collider(this.objLayer2, this.player)
-
+       
         if (window.readnote2 == 0) {
             this.physics.add.overlap(
                 this.player, // player
