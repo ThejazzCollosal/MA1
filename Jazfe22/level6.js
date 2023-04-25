@@ -196,4 +196,8 @@ class level6 extends Phaser.Scene {
         this.light3.disableBody(true, true);
         this.break.play();
     }
+
+    interact(player, boy) {
+        this.scene.start("finalscene")
+    }
 }
