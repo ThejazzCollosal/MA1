@@ -11,7 +11,7 @@ class msg4 extends Phaser.Scene {
     preload() {
   
       // Step 2 : Preload any images here, nickname, filename
-      this.load.image("msg4", "assets/msg4.png");
+      this.load.image("msg4", "assets/Nmsg4.jpg");
   
   
     }
