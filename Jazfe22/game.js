@@ -16,10 +16,7 @@ let config = {
 };
 
 let game = new Phaser.Game(config);
-window.innerWidth * window.devicePixelRatio
-window.innerHeight,
-phaser.CANVAS,
-    
+
 window.glass = 0
 window.readnote =0
 window.readnote2 =0
