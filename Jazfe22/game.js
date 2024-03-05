@@ -10,7 +10,7 @@ let config = {
         }
     },
     backgroundColor: '#000000',
-    scene: [ preloadScene,opening,instructions,morning,night,level1,level2,level3,level4,level5,level6,death,msg,msg2,msg3,msg4,finalscene,yesscene]
+    scene: [ preloadScene,opening,instructions,morning,night,level1,level2,level3,level4,level5,level6,death,msg1,msg2,msg3,msg4,finalscene,yesscene]
     
 
 };
