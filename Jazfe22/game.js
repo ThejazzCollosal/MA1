@@ -16,6 +16,8 @@ let config = {
 };
 
 let game = new Phaser.Game(config);
+window.innerWidth,
+window.innerHeight,
 
 window.glass = 0
 window.readnote =0
