@@ -21,8 +21,8 @@ class preloadScene extends Phaser.Scene {
         this.load.image("key", "assets/key.png")
         this.load.image("collect", "assets/collectibles_32x32.png")
         this.load.image("page", "assets/note.png")
-        this.load.image("msg2", "assets/msg1.png");
-        this.load.image("msg2", "assets/msg2.png");
+        this.load.image("msg1", "assets/Nmsg1.jpg");
+        this.load.image("msg2", "assets/Nmsg2.jpg");
         this.load.image("boy", "assets/boyspirit.png");
         this.load.audio("hit", "assets/ghost.mp3")
         this.load.audio("ghost", "assets/scary.mp3")
