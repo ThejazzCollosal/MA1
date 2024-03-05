@@ -1,7 +1,7 @@
 class msg1 extends Phaser.Scene {
     constructor() {
       super({
-        key: "msg",
+        key: "msg1",
       });
   
     }
@@ -11,7 +11,7 @@ class msg1 extends Phaser.Scene {
     preload() {
   
       // Step 2 : Preload any images here, nickname, filename
-        this.load.image("msg", "assets/Nmsg1.jpg");
+        this.load.image("msg1", "assets/Nmsg1.jpg");
   
   
     }
@@ -20,7 +20,7 @@ class msg1 extends Phaser.Scene {
       console.log("*** intro scene");
   
       window.readnote = 1
-      const image = this.add.image(320,208, 'msg').setScale(1);
+      const image = this.add.image(320,208, 'msg1').setScale(1);
   
       var spaceDown = this.input.keyboard.addKey("SPACE");
   
