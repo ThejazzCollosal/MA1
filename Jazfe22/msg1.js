@@ -1,4 +1,4 @@
-class msg extends Phaser.Scene {
+class msg1 extends Phaser.Scene {
     constructor() {
       super({
         key: "msg",
