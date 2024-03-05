@@ -20,7 +20,7 @@ class msg1 extends Phaser.Scene {
       console.log("*** intro scene");
   
       window.readnote = 1
-      const image = this.add.image(320,208, 'msg').setScale(1);
+      const image = this.add.image(320,208, 'msg1').setScale(1);
   
       var spaceDown = this.input.keyboard.addKey("SPACE");
   
