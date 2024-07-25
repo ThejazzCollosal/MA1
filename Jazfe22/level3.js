@@ -214,7 +214,7 @@ class level3 extends Phaser.Scene {
      moveRightLeft() {
         console.log("moveRightLeft");
         this.tweens.timeline({
-            targets: this.ghost2,
+            targets: this.ghost,
             ease: "Linear",
             loop: -1, // loop forever
             duration: 2000,
