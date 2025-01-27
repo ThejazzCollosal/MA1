@@ -38,7 +38,15 @@ class opening extends Phaser.Scene {
         console.log("Jump to intro scene");
         this.scene.start("instructions");
 
-        window.glass = 0;
+      window.glass = 0
+      window.readnote =0
+      window.readnote2 =0
+      window.readnote3 =0
+      window.readnote4 =0
+      window.key = 0
+      window.note = 0
+      window.icon = 0
+      window.collected =0;
       },
       this
     );
