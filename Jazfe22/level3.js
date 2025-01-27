@@ -96,6 +96,13 @@ class level3 extends Phaser.Scene {
             loop: false,
         });
 
+         this.time.addEvent({
+            delay: 0,
+            callback: this.moveRightLeft2,
+            callbackScope: this,
+            loop: false,
+        });
+
         ///////////////////Tweens///////////////
 
         var startPoint = map.findObject("summonLayer", (obj) => obj.name === "start")
@@ -211,8 +218,8 @@ class level3 extends Phaser.Scene {
     }
 
 
-     moveRightLeft() {
-        console.log("moveRightLeft");
+     moveRightLeft2() {
+        console.log("moveRightLeft2");
         this.tweens.timeline({
             targets: this.ghost,
             ease: "Linear",
