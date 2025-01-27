@@ -207,7 +207,9 @@ class level2 extends Phaser.Scene {
 
     night() {
         this.scene.start("night");
-        window.key = 0
+        window.key = 0;
+        window.glass++;
+        
     }
 
 
