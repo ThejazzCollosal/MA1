@@ -36,7 +36,12 @@ class opening extends Phaser.Scene {
     spaceDown.on(
       "down", function () {
         console.log("Jump to intro scene");
-        this.scene.start("instructions");
+         playerpos.x = 11;
+        playerpos.y = 193;
+        this.scene.start('level6', {
+            player: playerpos,
+            inventory: this.inventory
+       // this.scene.start("instructions");
 
       window.glass = 0
       window.readnote =0
