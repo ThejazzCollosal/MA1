@@ -108,7 +108,7 @@ class level3 extends Phaser.Scene {
         var startPoint = map.findObject("summonLayer", (obj) => obj.name === "start")
 
 
-        this.ghost = this.physics.add.sprite(400, 200, "NPC").play('NPC-down').setScale(0.8);
+        this.ghost = this.physics.add.sprite(400, 600, "NPC").play('NPC-down').setScale(0.8);
         this.ghost2 = this.physics.add.sprite(600, 200, "NPC").play('NPC-left').setScale(0.8);
         this.ghost3 = this.physics.add.sprite(200, 400, "NPC").play('NPC-up').setScale(0.8);
         
