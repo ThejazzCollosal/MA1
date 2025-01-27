@@ -26,8 +26,6 @@ class level3 extends Phaser.Scene {
        
        window.ghostmusic - this.sound.add("ghost").setVolume(0.1).setLoop(true).play()
 
-        window.glass===5;
-
         // Step 4 Load the game tilest
         // 1st parameter is name in Tiled,
         // 2nd parameter is key in Preload
