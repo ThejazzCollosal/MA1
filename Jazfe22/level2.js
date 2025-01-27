@@ -112,13 +112,16 @@ class level2 extends Phaser.Scene {
     }
     update() {
 
+        if(window.glass=4){
+            this.scene.start("night", {});
+        }
+
         if (this.player.x > 34 && this.player.x < 61 && this.player.y < 165 && this.player.y > 136) {
             this.level1()
         }
 
         if (this.player.x > 613 && this.player.x < 640 && this.player.y < 383 && this.player.y > 343) {
             if(window.glass=4){
-                this.scene.start("night", {});
                 this.level3() 
             }
         }
