@@ -27,9 +27,16 @@ class morning extends Phaser.Scene {
         "down", function () {
           console.log("Jump to intro scene");
           let playerPos = {};
-          playerPos.x = 35;
-          playerPos.y = 330;
-          this.scene.start("level1", { player: playerPos });
+          // playerPos.x = 35;
+          // playerPos.y = 330;
+          // this.scene.start("level1", { player: playerPos });
+
+        playerpos.x = 11;
+        playerpos.y = 193;
+        this.scene.start('level6', {
+            player: playerpos,
+            inventory: this.inventory
+        });
         },
         this
       );
