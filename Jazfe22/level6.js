@@ -81,8 +81,8 @@ class level6 extends Phaser.Scene {
         var startPoint = map.findObject("summonLayer", (obj) => obj.name === "start")
 
         this.cursors = this.input.keyboard.createCursorKeys();
-        this.light = this.physics.add.sprite(82, 205, 'light').setOffset(100, 0)
-        this.light2 = this.physics.add.sprite(337, 205, 'light').setOffset(100, 0)
+        this.light = this.physics.add.sprite(82, 205, 'light').setOffset(50, 0)
+        this.light2 = this.physics.add.sprite(337, 205, 'light').setOffset(50, 0)
         this.light3 = this.physics.add.sprite(592, 205, 'light').setOffset(50, 0)
         this.light4 = this.physics.add.sprite(737, 205, 'light')
         this.boy = this.physics.add.sprite(737, 203, 'boy').setScale(0.7)
