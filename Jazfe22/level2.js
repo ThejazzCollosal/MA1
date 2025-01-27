@@ -163,7 +163,7 @@ class level2 extends Phaser.Scene {
     //         this.player.y < 284 &&
     //         window.key < 3)
 
-    // }
+    }
 
     level1() {
         let playerpos = {}
