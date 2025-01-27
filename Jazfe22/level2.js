@@ -120,7 +120,7 @@ class level2 extends Phaser.Scene {
         }
 
         if (this.player.x > 613 && this.player.x < 640 && this.player.y < 383 && this.player.y > 343) {
-            if(window.glass>=4){
+            if(window.glass=4){
                 this.level3() 
             }
         }
