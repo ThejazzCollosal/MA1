@@ -26,11 +26,11 @@ class night extends Phaser.Scene {
       spaceDown.on(
         "down", function () {
           console.log("Jump to intro scene");
-          window.glass++;
           let playerPos = {};
           playerPos.x = 572;
           playerPos.y = 364;
           this.scene.start("level2", { player: playerPos });
+            window.glass === 5;
         },
         this
       );
