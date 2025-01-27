@@ -30,7 +30,6 @@ class night extends Phaser.Scene {
           playerPos.x = 572;
           playerPos.y = 364;
           this.scene.start("level2", { player: playerPos });   
-          window.glass === 6;
         },
         this
       );
