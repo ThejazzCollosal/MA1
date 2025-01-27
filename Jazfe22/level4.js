@@ -172,6 +172,7 @@ class level4 extends Phaser.Scene {
         if (this.player.x > 10 && this.player.x < 32 && this.player.y < 235.4 && this.player.y > 210) {
             if (window.note >= 3) {
                 this.level5()
+             }
         }
 
         if (this.player.x > 486 && this.player.x < 538 && this.player.y < 394 && this.player.y > 389) {
