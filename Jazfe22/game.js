@@ -10,6 +10,10 @@ let config = {
         }
     },
     backgroundColor: '#000000',
+     scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH
+      },
     scene: [ preloadScene,opening,instructions,morning,night,level1,level2,level3,level4,level5,level6,death,msg1,msg2,msg3,msg4,finalscene,yesscene]
     
 
