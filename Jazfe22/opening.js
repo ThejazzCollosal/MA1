@@ -31,11 +31,14 @@ class opening extends Phaser.Scene {
     var spaceDown = this.input.keyboard.addKey("SPACE");
 
     // On spacebar event, call the world scene
+        
 
     spaceDown.on(
       "down", function () {
         console.log("Jump to intro scene");
         this.scene.start("instructions");
+
+        window.glass = 0;
       },
       this
     );
