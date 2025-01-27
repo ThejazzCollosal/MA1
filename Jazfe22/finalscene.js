@@ -31,10 +31,12 @@ class finalscene extends Phaser.Scene {
          KeyN.on(
       "down", function () {
         this.scene.start("yesscene");
+      }
 
           KeyY.on(
       "down", function () {
         this.scene.start("death");
+      }
 
 //     key1.on('down', function () {
 //         this.scene.start("death");
