@@ -147,6 +147,7 @@ class level2 extends Phaser.Scene {
 
         if(window.glass=== 4){
             this.scene.start("night", {});
+            window.glass===6;
         }
     }
     //     if
